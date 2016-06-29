@@ -22,8 +22,12 @@ exports.arraysAnswers = {
   },
 
   removeWithoutCopy: function(arr, item) {
-    for (let i = arr.indexOf(item); i > -1; i = arr.indexOf(item)) {
-      arr.splice(i, 1);
+    for (let i = 0, j = arr.length; i < j; i++) {
+      if (arr[i] === item) {
+        arr.splice(i, 1);
+        i--;
+        j--;
+      }
     }
 
     return arr;
