@@ -10,11 +10,23 @@ exports.arraysAnswers = {
   },
 
   remove: function(arr, item) {
+    let newArr = [];
 
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] !== item) {
+        newArr.push(arr[i]);
+      }
+    }
+
+    return newArr;
   },
 
   removeWithoutCopy: function(arr, item) {
+    for (let i = arr.indexOf(item); i > -1; i = arr.indexOf(item)) {
+      arr.splice(i, 1);
+    }
 
+    return arr;
   },
 
   append: function(arr, item) {
