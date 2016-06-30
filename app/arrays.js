@@ -49,7 +49,8 @@ exports.arraysAnswers = {
   },
 
   curtail: function(arr) {
-
+    arr.shift();
+    return arr;
   },
 
   concat: function(arr1, arr2) {
