@@ -8,6 +8,17 @@ exports.asyncAnswers = {
   },
 
   manipulateRemoteData: function(url) {
+    let deferred = $.Deferred();
 
+    $.getJSON(url, (data) => {
+      let names = data.people.reduce((acc, person) => {
+        acc.push(person.name);
+        return acc;
+      }, []);
+
+      deferred.resolve(names.sort());
+    });
+
+    return deferred.promise();
   }
 };
