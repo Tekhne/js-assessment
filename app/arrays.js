@@ -75,7 +75,23 @@ exports.arraysAnswers = {
   },
 
   duplicates: function(arr) {
+    let counts = {};
+    let dups = [];
 
+    for (let i = 0; i < arr.length; i++) {
+      counts[arr[i]] = {
+        count: counts[arr[i]] ? (counts[arr[i]].count + 1) : 1,
+        value: arr[i] // Avoid string conversion with Object keys.
+      }
+    }
+
+    for (let c in counts) {
+      if (counts.hasOwnProperty(c) && (counts[c].count > 1)) {
+        dups.push(counts[c].value);
+      }
+    }
+
+    return dups;
   },
 
   square: function(arr) {
