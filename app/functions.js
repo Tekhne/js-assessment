@@ -14,7 +14,11 @@ exports.functionsAnswers = {
   },
 
   makeClosures: function(arr, fn) {
-
+    return arr.map((item) => {
+      return () => {
+        return fn(item);
+      }
+    });
   },
 
   partial: function(fn, str1, str2) {
