@@ -40,7 +40,13 @@ exports.functionsAnswers = {
   },
 
   partialUsingArguments: function(fn) {
+    let head = Array.prototype.slice.call(arguments, 1);
 
+    return function () {
+      let tail = Array.prototype.slice.call(arguments);
+      let full = head.concat(tail);
+      return fn.apply(null, full);
+    }
   },
 
   curryIt: function(fn) {
