@@ -28,7 +28,10 @@ exports.functionsAnswers = {
   },
 
   useArguments: function() {
-
+    return Array.prototype.slice.call(arguments).reduce(
+      (acc, number) => { return acc + number;
+      }, 0
+    );
   },
 
   callIt: function(fn) {
