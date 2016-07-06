@@ -50,6 +50,22 @@ exports.functionsAnswers = {
   },
 
   curryIt: function(fn) {
+    let args = [];
 
+    wrapper = function (arg) {
+      args.push(arg);
+      return fn.apply(null, args);
+    }
+
+    for (let i = 0; i < (fn.length - 1); i++) {
+      let oldWrapper = wrapper;
+
+      wrapper = function (arg) {
+        args.push(arg);
+        return oldWrapper;
+      }
+    }
+
+    return wrapper;
   }
 };
