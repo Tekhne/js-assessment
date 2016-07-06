@@ -10,7 +10,13 @@ exports.numbersAnswers = {
   },
 
   convertToBinary: function(num) {
+    let binary = [];
 
+    for (let i = 8; i > 0; i--) {
+      binary.push(this.valueAtBit(num, i));
+    }
+
+    return binary.join('');
   },
 
   multiply: function(a, b) {
