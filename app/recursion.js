@@ -59,7 +59,19 @@ exports.recursionAnswers = {
   },
 
   fibonacci: function(n) {
+    let current = null;
+    let last1 = 0;
+    let last2 = 1;
 
+    function fib(m) {
+      if (m <= 1) { return current; }
+      current = last1 + last2;
+      last1 = last2;
+      last2 = current;
+      return fib(m - 1);
+    }
+
+    return fib(n);
   },
 
   validParentheses: function(n) {
