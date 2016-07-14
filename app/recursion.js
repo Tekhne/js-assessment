@@ -36,7 +36,26 @@ exports.recursionAnswers = {
   },
 
   permute: function(arr) {
+    let permutation;
+    let permutations = [];
 
+    for (let i = 0; i < arr.length; i++) {
+      let head = arr.splice(i, 1);
+      let tails = this.permute(arr);
+
+      if (tails.length <= 0) {
+        permutations.push(head);
+      } else {
+        for (let j = 0; j < tails.length; j++) {
+          permutation = Array.prototype.concat.apply(head, tails[j]);
+          permutations.push(permutation);
+        }
+      }
+
+      arr.splice(i, 0, head[0]);
+    }
+
+    return permutations;
   },
 
   fibonacci: function(n) {
