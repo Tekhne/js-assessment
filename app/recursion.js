@@ -75,6 +75,59 @@ exports.recursionAnswers = {
   },
 
   validParentheses: function(n) {
+    let combination  = [];
+    let combinations = [];
+    let left         = 0;
+    let right        = 0;
 
+    function close() {
+      combination.push(')');
+      right++;
+    }
+
+    function open() {
+      combination.push('(');
+      left++;
+    }
+
+    function undoOpen() {
+      combination.pop();
+      left--;
+    }
+
+    function reset() {
+      combination = [];
+      left = 0;
+      right = 0;
+    }
+
+    function combine() {
+      if (combination.length < 1) {
+        open();
+        combine();
+      }
+
+      if (left === n) {
+        close();
+
+        if (right === n) {
+          combinations.push(combination.join(''));
+          reset();
+        } else {
+          close();
+          combine();
+        }
+      } else {
+        open();
+        combine();
+        undoOpen();
+
+        close();
+        combine();
+      }
+    }
+
+    combine();
+    return combinations;
   }
 };
