@@ -75,6 +75,40 @@ exports.recursionAnswers = {
   },
 
   validParentheses: function(n) {
+    let combinations = [];
 
+    function count(combination, paren) {
+      let c = 0;
+
+      for (let i = 0; i < combination.length; i++) {
+        if (combination[i] === paren) { c++; }
+      }
+
+      return c;
+    }
+
+    function combine(combination) {
+      let countOpen = count(combination, '(');
+      let countClosed = count(combination, ')');
+
+      if ((countOpen >= n) && (countClosed >= n)) {
+        combinations.push(combination.join(''));
+      } else if (countOpen >= n) {
+        combine(combination.concat(')'));
+      } else {
+        ['(', ')'].forEach(function (paren) {
+          let newCombination = combination.concat(paren);
+
+          if (count(newCombination, ')') > count(newCombination, '(')) {
+            return;
+          }
+
+          combine(combination.concat(paren));
+        });
+      }
+    }
+
+    combine([]);
+    return combinations;
   }
 };
