@@ -10,7 +10,7 @@ exports.regexAnswers = {
   },
 
   endsWithVowel: function(str) {
-
+    return /[aeiouAEIOU]$/.test(str);
   },
 
   captureThreeNumbers: function(str) {
