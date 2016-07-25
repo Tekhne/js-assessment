@@ -19,7 +19,7 @@ exports.regexAnswers = {
   },
 
   matchesPattern: function(str) {
-
+    return /\b\d{3}-\d{3}-\d{4}\b/.test(str);
   },
 
   isUSD: function(str) {
